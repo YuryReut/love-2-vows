@@ -180,7 +180,10 @@ const chakraCTA: Record<string, string> = {
 
 const vowVerbs = ["хранить", "создавать", "защищать", "питать", "расти", "вдохновлять"];
 
-function generateStructuredVow(data: string[]): { text: string[]; example: [string, string] } {
+function generateStructuredVow(data: string[]): {
+  text: string[];
+  examples: Record<string, [string, string]>;
+} {
   const [myFeel, myLang, partnerFeel, partnerLang] = data;
 
   const q2 = chakraQualities[partnerFeel] || partnerFeel;
@@ -278,20 +281,29 @@ export default function App() {
           {result?.text.map((line, idx) => (
             <p key={idx} className="text-base leading-relaxed">{line}</p>
           ))}
-          {result?.example[0] && (
-            <div className="mt-4 text-sm text-left">
-              <p className="font-medium mb-1">Если ты хочешь усилить этот блок — можешь использовать что-то из этих фраз:</p>
-              <p className="italic mb-2">“{result.example[0]}”</p>
-              <p className="italic">“{result.example[1]}”</p>
+
+          {(result?.examples.partner[0] || result?.examples.partner[1]) && (
+            <div className="mt-6 text-sm text-left">
+              <p className="font-medium mb-1">Если ты хочешь усилить блок «О нём» — можешь использовать что-то из этих фраз:</p>
+              {result.examples.partner[0] && <p className="italic mb-1">“{result.examples.partner[0]}”</p>}
+              {result.examples.partner[1] && <p className="italic">“{result.examples.partner[1]}”</p>}
             </div>
           )}
+
+          {(result?.examples.self[0] || result?.examples.self[1]) && (
+            <div className="mt-6 text-sm text-left">
+              <p className="font-medium mb-1">Если ты хочешь усилить блок «О себе» — можешь использовать что-то из этих фраз:</p>
+              {result.examples.self[0] && <p className="italic mb-1">“{result.examples.self[0]}”</p>}
+              {result.examples.self[1] && <p className="italic">“{result.examples.self[1]}”</p>}
+            </div>
+          )}
+
           <p className="text-sm text-gray-500 leading-relaxed">
             Твои клятвы — какими бы они ни были — говори от сердца, и они будут самыми правильными.<br />
-            Мы создали сервис <a href="https://web3wed.io" target="_blank" className="underline">web3wed.io</a>, чтобы вы могли сохранить их навсегда. {chakraCtaLine}
+            Мы создали сервис <a href="https://web3wed.io" target="_blank" className="underline">web3wed.io</a>, чтобы вы могли сохранить их навсегда. <b>{chakraCtaLine}</b>
           </p>
         </div>
       )}
     </div>
   );
 }
-
