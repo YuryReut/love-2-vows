@@ -192,7 +192,7 @@ function generateStructuredVow(data: string[]): {
   const c2 = `<i>${langChannels[partnerLang] || partnerLang}</i>`;
   const q3 = `<i>${chakraQualities[myFeel] || myFeel}</i>`;
   const c3 = `<i>${langChannels[myLang] || myLang}</i>`;
-  const verb = vowVerbs[Math.floor(Math.random() * vowVerbs.length)];
+  const verb = `<i>${vowVerbs[Math.floor(Math.random() * vowVerbs.length)]}</i>`;
   const selfKey = `${myFeel}|${myLang}`;
   const partnerKey = `${partnerFeel}|${partnerLang}`;
 
