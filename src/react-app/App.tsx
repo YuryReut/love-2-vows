@@ -180,7 +180,12 @@ const chakraCTA: Record<string, string> = {
 
 const vowVerbs = ["хранить", "создавать", "защищать", "питать", "расти", "вдохновлять"];
 
-function generateStructuredVow(data: string[]): { text: string[]; example: [string, string] } {
+
+function generateStructuredVow(data: string[]): {
+  text: string[];
+  selfExample?: [string, string];
+  partnerExample?: [string, string];
+} {
   const [myFeel, myLang, partnerFeel, partnerLang] = data;
 
   const q2 = chakraQualities[partnerFeel] || partnerFeel;
@@ -188,8 +193,8 @@ function generateStructuredVow(data: string[]): { text: string[]; example: [stri
   const q3 = chakraQualities[myFeel] || myFeel;
   const c3 = langChannels[myLang] || myLang;
   const verb = vowVerbs[Math.floor(Math.random() * vowVerbs.length)];
-  const key = `${myFeel}|${myLang}`;
-  const example = vowTemplates[key] || ["", ""];
+  const selfKey = `${myFeel}|${myLang}`;
+  const partnerKey = `${partnerFeel}|${partnerLang}`;
 
   return {
     text: [
@@ -199,7 +204,8 @@ function generateStructuredVow(data: string[]): { text: string[]; example: [stri
       `И я обещаю ${verb} пространство, где наши чувства будут расти сильнее каждого дня.`,
       "Я люблю тебя — сегодня, завтра и всегда."
     ],
-    example
+    selfExample: vowTemplates[selfKey],
+    partnerExample: vowTemplates[partnerKey]
   };
 }
 
@@ -278,19 +284,30 @@ export default function App() {
           {result?.text.map((line, idx) => (
             <p key={idx} className="text-base leading-relaxed">{line}</p>
           ))}
-          {result?.example[0] && (
-            <div className="mt-4 text-sm text-left">
-              <p className="font-medium mb-1">Если ты хочешь усилить этот блок — можешь использовать что-то из этих фраз:</p>
-              <p className="italic mb-2">“{result.example[0]}”</p>
-              <p className="italic">“{result.example[1]}”</p>
+
+          {result?.partnerExample && (
+            <div className="mt-6 text-sm text-left">
+              <p className="font-medium mb-1">Если ты хочешь усилить блок «О нём» — можешь использовать что-то из этих фраз:</p>
+              <p className="italic mb-2">“{result.partnerExample[0]}”</p>
+              <p className="italic">“{result.partnerExample[1]}”</p>
             </div>
           )}
+
+          {result?.selfExample && (
+            <div className="mt-6 text-sm text-left">
+              <p className="font-medium mb-1">Если ты хочешь усилить блок «О себе» — можешь использовать что-то из этих фраз:</p>
+              <p className="italic mb-2">“{result.selfExample[0]}”</p>
+              <p className="italic">“{result.selfExample[1]}”</p>
+            </div>
+          )}
+
           <p className="text-sm text-gray-500 leading-relaxed">
             Твои клятвы — какими бы они ни были — говори от сердца, и они будут самыми правильными.<br />
-            Мы создали сервис <a href="https://web3wed.io" target="_blank" className="underline">web3wed.io</a>, чтобы вы могли сохранить их навсегда. {chakraCtaLine}
+            Мы создали сервис <a href="https://web3wed.io" target="_blank" className="underline">web3wed.io</a>, чтобы вы могли сохранить их навсегда. <b>{chakraCtaLine}</b>
           </p>
         </div>
       )}
     </div>
   );
 }
+
