@@ -168,9 +168,23 @@ const langChannels: Record<string, string> = {
   "Прикосновения": "прикосновения"
 };
 
+const chakraCTA: Record<string, string> = {
+  "Безопасность и забота": "Сохрани свою любовь — пусть она всегда будет твоей тихой гаванью.",
+  "Притяжение и страсть": "Зафиксируй пламя этого чувства — и пусть оно вспыхивает вновь, где бы вы ни были.",
+  "Поддержка и признание": "Пусть ваша клятва станет символом силы, которую вы дарите друг другу.",
+  "Забота и принятие": "Сохрани вашу нежность в блокчейне, как память о принятии и любви.",
+  "Общие смыслы и видение": "Зафиксируй общее видение, чтобы всегда помнить, куда вы идёте вместе.",
+  "Вдохновение и интуиция": "Сохрани эту искру вдохновения — как свидетельство вашей уникальной связи.",
+  "Тишина и слияние": "Закрепи вашу тишину и слияние навсегда — как точку возвращения к любви."
+};
+
 const vowVerbs = ["хранить", "создавать", "защищать", "питать", "расти", "вдохновлять"];
 
-function generateStructuredVow(data: string[]): string[] {
+const vowTemplates: Record<string, [string, string]> = {
+  // предыдущие шаблоны, предполагается что они уже есть в коде
+};
+
+function generateStructuredVow(data: string[]): { text: string[]; example: [string, string] } {
   const [myFeel, myLang, partnerFeel, partnerLang] = data;
 
   const q2 = chakraQualities[partnerFeel] || partnerFeel;
@@ -178,14 +192,19 @@ function generateStructuredVow(data: string[]): string[] {
   const q3 = chakraQualities[myFeel] || myFeel;
   const c3 = langChannels[myLang] || myLang;
   const verb = vowVerbs[Math.floor(Math.random() * vowVerbs.length)];
+  const key = `${myFeel}|${myLang}`;
+  const example = vowTemplates[key] || ["", ""];
 
-  return [
-    "В этот момент, когда мир замер вокруг нас, я хочу сказать…",
-    `Я вижу в тебе ${q2}, и через твои ${c2} чувствую, как моё сердце становится домом для тебя.`,
-    `Из своей ${q3} я дарю тебе любовь через ${c3}, потому что именно так звучит моя душа рядом с тобой.`,
-    `И я обещаю ${verb} пространство, где наши чувства будут расти сильнее каждого дня.`,
-    "Я люблю тебя — сегодня, завтра и всегда."
-  ];
+  return {
+    text: [
+      "В этот момент, когда мир замер вокруг нас, я хочу сказать…",
+      `Я вижу в тебе ${q2}, и через твои ${c2} чувствую, как моё сердце становится домом для тебя.`,
+      `Из своей ${q3} я дарю тебе любовь через ${c3}, потому что именно так звучит моя душа рядом с тобой.`,
+      `И я обещаю ${verb} пространство, где наши чувства будут расти сильнее каждого дня.`,
+      "Я люблю тебя — сегодня, завтра и всегда."
+    ],
+    example
+  };
 }
 
 const welcomeText =
@@ -199,47 +218,19 @@ const copyrightText =
 const questions = [
   {
     text: "Как ты чувствуешь любовь?",
-    options: [
-      "Безопасность и забота",
-      "Притяжение и страсть",
-      "Поддержка и признание",
-      "Забота и принятие",
-      "Общие смыслы и видение",
-      "Вдохновение и интуиция",
-      "Тишина и слияние"
-    ]
+    options: Object.keys(chakraQualities)
   },
   {
     text: "Как ты воспринимаешь любовь?",
-    options: [
-      "Слова поддержки",
-      "Время вместе",
-      "Подарки",
-      "Помощь",
-      "Прикосновения"
-    ]
+    options: Object.keys(langChannels)
   },
   {
     text: "Как твоя половинка чувствует любовь?",
-    options: [
-      "Безопасность и забота",
-      "Притяжение и страсть",
-      "Поддержка и признание",
-      "Забота и принятие",
-      "Общие смыслы и видение",
-      "Вдохновение и интуиция",
-      "Тишина и слияние"
-    ]
+    options: Object.keys(chakraQualities)
   },
   {
     text: "Как она воспринимает любовь?",
-    options: [
-      "Слова поддержки",
-      "Время вместе",
-      "Подарки",
-      "Помощь",
-      "Прикосновения"
-    ]
+    options: Object.keys(langChannels)
   }
 ];
 
@@ -254,7 +245,8 @@ export default function App() {
     setStep(step + 1);
   };
 
-  const structuredVow = answers.length === 4 ? generateStructuredVow(answers) : [];
+  const result = answers.length === 4 ? generateStructuredVow(answers) : null;
+  const chakraCtaLine = chakraCTA[answers[0]] || "Сохрани эту вибрацию на блокчейне любви.";
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-4 py-8 text-center">
@@ -287,15 +279,23 @@ export default function App() {
       ) : (
         <div className="text-gray-600 max-w-xl space-y-6">
           <h2 className="text-lg font-semibold">Твоя клятва любви</h2>
-          {structuredVow.map((line, idx) => (
+          {result?.text.map((line, idx) => (
             <p key={idx} className="text-base leading-relaxed">{line}</p>
           ))}
+          {result?.example[0] && (
+            <div className="mt-4 text-sm text-left">
+              <p className="font-medium mb-1">Если ты хочешь усилить этот блок — можешь использовать что-то из этих фраз:</p>
+              <p className="italic mb-2">“{result.example[0]}”</p>
+              <p className="italic">“{result.example[1]}”</p>
+            </div>
+          )}
           <p className="text-sm text-gray-500 leading-relaxed">
             Твои клятвы — какими бы они ни были — говори от сердца, и они будут самыми правильными.<br />
-            Мы создали сервис <a href="https://web3wed.io" target="_blank" className="underline">web3wed.io</a>, чтобы вы могли сохранить их навсегда. <b>Сохрани эту вибрацию на блокчейне любви.</b>
+            Мы создали сервис <a href="https://web3wed.io" target="_blank" className="underline">web3wed.io</a>, чтобы вы могли сохранить их навсегда. <b>{chakraCtaLine}</b>
           </p>
         </div>
       )}
     </div>
   );
 }
+
