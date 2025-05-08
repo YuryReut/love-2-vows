@@ -250,28 +250,59 @@ export default function App() {
   const result = answers.length === 4 ? generateStructuredVow(answers) : null;
   const chakraCtaLine = chakraCTA[answers[0]] || "Сохрани эту вибрацию на блокчейне любви.";
 
+  const base = {
+    fontFamily: "'EB Garamond', serif",
+    backgroundColor: "white",
+    color: "#222",
+    padding: "2rem",
+    maxWidth: "640px",
+    margin: "0 auto",
+    textAlign: "center"
+  };
+
+  const section = {
+    textAlign: "left",
+    marginBottom: "1.5rem"
+  };
+
+  const blockTitle = {
+    fontWeight: "bold",
+    fontSize: "1rem",
+    margin: "1.5rem 0 0.5rem"
+  };
+
+  const italic = {
+    fontStyle: "italic",
+    margin: "0.2rem 0"
+  };
+
+  const buttonStyle = {
+    padding: "0.5rem 1.2rem",
+    background: "black",
+    color: "white",
+    borderRadius: "999px",
+    border: "none",
+    cursor: "pointer",
+    marginTop: "1rem"
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4 py-8 text-center">
+    <div style={base}>
       {step === -1 ? (
         <>
-          <p className="text-lg max-w-xl mb-6 leading-relaxed">{welcomeText}</p>
-          <button
-            onClick={() => setStep(0)}
-            className="px-6 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition"
-          >
-            {startButtonText}
-          </button>
-          <p className="mt-10 text-xs text-gray-500 max-w-xs">{copyrightText}</p>
+          <p style={{ fontSize: "1.1rem", lineHeight: "1.6" }}>{welcomeText}</p>
+          <button style={buttonStyle} onClick={() => setStep(0)}>{startButtonText}</button>
+          <p style={{ fontSize: "0.8rem", color: "#666", marginTop: "2rem" }}>{copyrightText}</p>
         </>
       ) : step < questions.length ? (
-        <div className="space-y-6 max-w-xl w-full">
-          <h2 className="text-lg font-semibold mb-4">{questions[step].text}</h2>
-          <div className="flex flex-wrap justify-center gap-2">
+        <div>
+          <h2 style={{ fontWeight: "bold", fontSize: "1.2rem", marginBottom: "1rem" }}>{questions[step].text}</h2>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", justifyContent: "center" }}>
             {questions[step].options.map((text, idx) => (
               <button
                 key={idx}
+                style={{ ...buttonStyle, background: "#eee", color: "#000" }}
                 onClick={() => handleOptionClick(text)}
-                className="px-4 py-2 bg-white border rounded-full hover:bg-gray-100"
               >
                 {text}
               </button>
@@ -279,32 +310,31 @@ export default function App() {
           </div>
         </div>
       ) : (
-        <div className="text-gray-600 max-w-xl space-y-6">
-          <h2 className="text-lg font-semibold">Твоя клятва любви</h2>
+        <div style={{ marginTop: "1.5rem" }}>
+          <h2 style={{ fontWeight: "bold", fontSize: "1.4rem", marginBottom: "1.5rem" }}>Твоя клятва любви</h2>
           {result?.text.map((line, idx) => (
-            <div key={idx} className="text-left space-y-1">
-              <p className="text-base whitespace-pre-line leading-relaxed">{line}</p>
+            <div key={idx} style={section}>
+              <p style={{ whiteSpace: "pre-line", lineHeight: "1.6" }}>{line}</p>
               {idx === 1 && result?.partnerExample && (
-                <div className="text-sm mt-2">
-                  <p className="font-medium mb-1">Если ты хочешь усилить блок «О нём» — можешь использовать что-то из этих фраз:</p>
-                  <p className="italic mb-2">“{result.partnerExample[0]}”</p>
-                  <p className="italic">“{result.partnerExample[1]}”</p>
+                <div>
+                  <p style={blockTitle}>Если ты хочешь усилить блок «О нём» — можешь использовать что-то из этих фраз:</p>
+                  <p style={italic}>“{result.partnerExample[0]}”</p>
+                  <p style={italic}>“{result.partnerExample[1]}”</p>
                 </div>
               )}
               {idx === 2 && result?.selfExample && (
-                <div className="text-sm mt-2">
-                  <p className="font-medium mb-1">Если ты хочешь усилить блок «О себе» — можешь использовать что-то из этих фраз:</p>
-                  <p className="italic mb-2">“{result.selfExample[0]}”</p>
-                  <p className="italic">“{result.selfExample[1]}”</p>
+                <div>
+                  <p style={blockTitle}>Если ты хочешь усилить блок «О себе» — можешь использовать что-то из этих фраз:</p>
+                  <p style={italic}>“{result.selfExample[0]}”</p>
+                  <p style={italic}>“{result.selfExample[1]}”</p>
                 </div>
               )}
             </div>
           ))}
-
-          <div className="pt-6 border-t mt-6 text-sm text-gray-500 leading-relaxed">
-            <p>
+          <div style={{ borderTop: "1px solid #ccc", paddingTop: "1.5rem", fontSize: "0.9rem", color: "#444" }}>
+            <p style={{ lineHeight: "1.5" }}>
               Твои клятвы — какими бы они ни были — говори от сердца, и они будут самыми правильными.<br />
-              Мы создали сервис <a href="https://web3wed.io" target="_blank" className="underline">web3wed.io</a>, чтобы вы могли сохранить их навсегда. <b>{chakraCtaLine}</b>
+              Мы создали сервис <a href="https://web3wed.io" target="_blank" style={{ color: "#000", textDecoration: "underline" }}>web3wed.io</a>, чтобы вы могли сохранить их навсегда. <b>{chakraCtaLine}</b>
             </p>
           </div>
         </div>
