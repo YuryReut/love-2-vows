@@ -182,27 +182,34 @@ const vowVerbs = ["хранить", "создавать", "защищать", "�
 
 
 function generateStructuredVow(data: string[]): {
-  text: string[];
+  text: [string, JSX.Element][];
   selfExample?: [string, string];
   partnerExample?: [string, string];
 } {
   const [myFeel, myLang, partnerFeel, partnerLang] = data;
 
-  const q2 = `<i>${chakraQualities[partnerFeel] || partnerFeel}</i>`;
-  const c2 = `<i>${langChannels[partnerLang] || partnerLang}</i>`;
-  const q3 = `<i>${chakraQualities[myFeel] || myFeel}</i>`;
-  const c3 = `<i>${langChannels[myLang] || myLang}</i>`;
-  const verb = `<i>${vowVerbs[Math.floor(Math.random() * vowVerbs.length)]}</i>`;
+  const q2 = chakraQualities[partnerFeel] || partnerFeel;
+  const c2 = langChannels[partnerLang] || partnerLang;
+  const q3 = chakraQualities[myFeel] || myFeel;
+  const c3 = langChannels[myLang] || myLang;
+  const verb = vowVerbs[Math.floor(Math.random() * vowVerbs.length)];
+
   const selfKey = `${myFeel}|${myLang}`;
   const partnerKey = `${partnerFeel}|${partnerLang}`;
 
   return {
     text: [
-      `📍 Открытие\nВ этот момент, когда мир замер вокруг нас, я хочу сказать…`,
-      `💬 О нём\nЯ вижу в тебе ${q2}, и через твои ${c2} чувствую, как моё сердце становится домом для тебя.`,
-      `🫶 О себе\nИз своей ${q3} я дарю тебе любовь через ${c3}, потому что именно так звучит моя душа рядом с тобой.`,
-      `🤝 Обещание\nИ я обещаю ${verb} пространство, где наши чувства будут расти сильнее каждого дня.`,
-      `❤️ Финал\nЯ люблю тебя — сегодня, завтра и всегда.`
+      ["📍 Открытие", <>В этот момент, когда мир замер вокруг нас, я хочу сказать…</>],
+      ["💬 О нём", <>
+        Я вижу в тебе <i>{q2}</i>, и через твои <i>{c2}</i> чувствую,
+        как моё сердце становится домом для тебя.
+      </>],
+      ["🫶 О себе", <>
+        Из своей <i>{q3}</i> я дарю тебе любовь через <i>{c3}</i>,
+        потому что именно так звучит моя душа рядом с тобой.
+      </>],
+      ["🤝 Обещание", <>И я обещаю <i>{verb}</i> пространство, где наши чувства будут расти сильнее каждого дня.</>],
+      ["❤️ Финал", <>Я люблю тебя — сегодня, завтра и всегда.</>]
     ],
     selfExample: vowTemplates[selfKey],
     partnerExample: vowTemplates[partnerKey]
@@ -278,8 +285,7 @@ export default function App() {
       ) : (
         <div style={{ marginTop: "1.5rem" }}>
           <h2 style={{ fontWeight: "bold", fontSize: "1.4rem", marginBottom: "1.5rem" }}>Твоя клятва любви</h2>
-          {result?.text.map((line, idx) => {
-            const [label, content] = line.split("\n");
+          {result?.text.map(([label, jsx], idx) => {
             const showHint = idx === 1 || idx === 2;
             const hintLeft = idx === 1 ? "сказать личное и важное о его" : "сказать от сердца о себе";
             const hintRight = idx === 1 ? "привести пример про" : "показать свой способ любви";
@@ -296,7 +302,7 @@ export default function App() {
                   )}
                 </div>
                 <div style={{ flex: 3 }}>
-                  <p style={{ fontSize: "1.6rem", lineHeight: "1.6", fontWeight: 400 }}>{content}</p>
+                  <p style={{ fontSize: "1.6rem", lineHeight: "1.6", fontWeight: 400 }}>{jsx}</p>
                   {idx === 1 && result?.partnerExample && (
                     <div style={{ marginTop: "1rem" }}>
                       <div style={{ fontSize: "0.8rem", marginBottom: "0.4rem", fontFamily: "Helvetica, sans-serif", color: "#444" }}>
