@@ -287,7 +287,7 @@ export default function App() {
           )}
           <p className="text-sm text-gray-500 leading-relaxed">
             Твои клятвы — какими бы они ни были — говори от сердца, и они будут самыми правильными.<br />
-            Мы создали сервис <a href="https://web3wed.io" target="_blank" className="underline">web3wed.io</a>, чтобы вы могли сохранить их навсегда. <b>{chakraCtaLine}</b>
+            Мы создали сервис <a href="https://web3wed.io" target="_blank" className="underline">web3wed.io</a>, чтобы вы могли сохранить их навсегда. {chakraCtaLine}
           </p>
         </div>
       )}
