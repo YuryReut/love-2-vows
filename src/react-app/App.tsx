@@ -250,20 +250,20 @@ export default function App() {
   const result = answers.length === 4 ? generateStructuredVow(answers) : null;
   const chakraCtaLine = chakraCTA[answers[0]] || "Сохрани эту вибрацию на блокчейне любви.";
 
-  const base = {
-    fontFamily: "'EB Garamond', serif",
-    backgroundColor: "white",
-    color: "#222",
-    padding: "2rem",
-    maxWidth: "640px",
-    margin: "0 auto",
-    textAlign: "center"
-  };
+const base = {
+  fontFamily: "'EB Garamond', serif",
+  backgroundColor: "white",
+  color: "#222",
+  padding: "2rem",
+  maxWidth: "640px",
+  margin: "0 auto",
+  textAlign: "center" as const
+};
 
-  const section = {
-    textAlign: "left",
-    marginBottom: "1.5rem"
-  };
+const section = {
+  textAlign: "left" as const,
+  marginBottom: "1.5rem"
+};
 
   const blockTitle = {
     fontWeight: "bold",
