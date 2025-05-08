@@ -217,6 +217,14 @@ export default function App() {
     setStep(step + 1);
   };
 
+  const key = `${answers[0]}|${answers[1]}`;
+  const [vowA, vowB] = vowTemplates[key] || [
+    "Пока нет точного совпадения для пары. Попробуй выбрать чуть точнее.",
+    "Пока нет точного совпадения для пары. Попробуй выбрать чуть точнее."
+  ];
+
+  const chakraCTA = "Сохрани эту вибрацию на блокчейне любви."; // пример CTA, можешь заменить по чакре answers[0]
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-4 py-8 text-center">
       {step === -1 ? (
@@ -246,17 +254,17 @@ export default function App() {
           </div>
         </div>
       ) : (
-        <div className="text-gray-600 max-w-xl">
-          <h2 className="text-lg font-semibold mb-4">Как выразить свои чувства точнее</h2>
-          <div className="mb-6 p-4 border rounded">Рекомендации как сказать о своих чувствах</div>
-          <div className="mb-6 p-4 border rounded">Рекомендации как выразить свои чувства</div>
-          <div className="space-y-2 text-sm text-left">
-            <div>• Будь конкретной, избегай абстракций.</div>
-            <div>• Учитывай язык любви партнёра.</div>
-            <div>• Говори в моменте, не откладывай.</div>
-          </div>
+        <div className="text-gray-600 max-w-xl space-y-6">
+          <h2 className="text-lg font-semibold">Как выразить свои чувства точнее</h2>
+          <div className="p-4 border rounded bg-white">{vowA}</div>
+          <div className="p-4 border rounded bg-white">{vowB}</div>
+          <p className="text-sm text-gray-500 leading-relaxed">
+            Твои клятвы — какими бы они ни были — говори от сердца, и они будут самыми правильными.<br />
+            Мы создали сервис <a href="https://web3wed.io" target="_blank" className="underline">web3wed.io</a>, чтобы вы могли сохранить их навсегда. <b>{chakraCTA}</b>
+          </p>
         </div>
       )}
     </div>
   );
 }
+
