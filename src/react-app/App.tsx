@@ -250,48 +250,14 @@ export default function App() {
   const result = answers.length === 4 ? generateStructuredVow(answers) : null;
   const chakraCtaLine = chakraCTA[answers[0]] || "Сохрани эту вибрацию на блокчейне любви.";
 
-const base = {
-  fontFamily: "'EB Garamond', serif",
-  backgroundColor: "white",
-  color: "#222",
-  padding: "2rem",
-  maxWidth: "640px",
-  margin: "0 auto",
-  textAlign: "center" as const
-};
-
-const section = {
-  textAlign: "left" as const,
-  marginBottom: "1.5rem"
-};
-
-  const blockTitle = {
-    fontWeight: "bold",
-    fontSize: "1rem",
-    margin: "1.5rem 0 0.5rem"
-  };
-
-  const italic = {
-    fontStyle: "italic",
-    margin: "0.2rem 0"
-  };
-
-  const buttonStyle = {
-    padding: "0.5rem 1.2rem",
-    background: "black",
-    color: "white",
-    borderRadius: "999px",
-    border: "none",
-    cursor: "pointer",
-    marginTop: "1rem"
-  };
-
   return (
-    <div style={base}>
+    <div style={{ fontFamily: "'EB Garamond', serif", backgroundColor: "white", color: "#222", padding: "2rem", maxWidth: "640px", margin: "0 auto", textAlign: "center" as const }}>
       {step === -1 ? (
         <>
           <p style={{ fontSize: "1.1rem", lineHeight: "1.6" }}>{welcomeText}</p>
-          <button style={buttonStyle} onClick={() => setStep(0)}>{startButtonText}</button>
+          <button style={{ padding: "0.5rem 1.2rem", background: "black", color: "white", borderRadius: "999px", border: "none", cursor: "pointer", marginTop: "1rem" }} onClick={() => setStep(0)}>
+            {startButtonText}
+          </button>
           <p style={{ fontSize: "0.8rem", color: "#666", marginTop: "2rem" }}>{copyrightText}</p>
         </>
       ) : step < questions.length ? (
@@ -301,7 +267,7 @@ const section = {
             {questions[step].options.map((text, idx) => (
               <button
                 key={idx}
-                style={{ ...buttonStyle, background: "#eee", color: "#000" }}
+                style={{ padding: "0.5rem 1.2rem", background: "#eee", color: "#000", borderRadius: "999px", border: "none", cursor: "pointer" }}
                 onClick={() => handleOptionClick(text)}
               >
                 {text}
@@ -312,25 +278,48 @@ const section = {
       ) : (
         <div style={{ marginTop: "1.5rem" }}>
           <h2 style={{ fontWeight: "bold", fontSize: "1.4rem", marginBottom: "1.5rem" }}>Твоя клятва любви</h2>
-          {result?.text.map((line, idx) => (
-            <div key={idx} style={section}>
-              <p style={{ whiteSpace: "pre-line", lineHeight: "1.6" }}>{line}</p>
-              {idx === 1 && result?.partnerExample && (
-                <div>
-                  <p style={blockTitle}>Если ты хочешь усилить блок «О нём» — можешь использовать что-то из этих фраз:</p>
-                  <p style={italic}>“{result.partnerExample[0]}”</p>
-                  <p style={italic}>“{result.partnerExample[1]}”</p>
+          {result?.text.map((line, idx) => {
+            const [label, content] = line.split("\n");
+            const showHint = idx === 1 || idx === 2;
+            const hintLeft = idx === 1 ? "сказать личное и важное о его" : "сказать от сердца о себе";
+            const hintRight = idx === 1 ? "привести пример про" : "показать свой способ любви";
+
+            return (
+              <div key={idx} style={{ display: "flex", gap: "2rem", alignItems: "flex-start", marginBottom: "2.5rem" }}>
+                <div style={{ flex: 1, fontFamily: "Helvetica, sans-serif", fontSize: "0.75rem", color: "#888", lineHeight: 1.4 }}>
+                  <div style={{ marginBottom: "0.5rem" }}>{label}</div>
+                  {showHint && (
+                    <>
+                      <div style={{ marginBottom: "0.3rem" }}>{hintLeft}</div>
+                      <div>{hintRight}</div>
+                    </>
+                  )}
                 </div>
-              )}
-              {idx === 2 && result?.selfExample && (
-                <div>
-                  <p style={blockTitle}>Если ты хочешь усилить блок «О себе» — можешь использовать что-то из этих фраз:</p>
-                  <p style={italic}>“{result.selfExample[0]}”</p>
-                  <p style={italic}>“{result.selfExample[1]}”</p>
+                <div style={{ flex: 3 }}>
+                  <p style={{ fontSize: "1.6rem", lineHeight: "1.6", fontWeight: 400 }}>{content}</p>
+                  {idx === 1 && result?.partnerExample && (
+                    <div style={{ marginTop: "1rem" }}>
+                      <div style={{ fontSize: "0.8rem", marginBottom: "0.4rem", fontFamily: "Helvetica, sans-serif", color: "#444" }}>
+                        Если ты хочешь усилить блок «О нём» — можешь использовать что-то из этих фраз:
+                      </div>
+                      <p style={{ fontStyle: "italic", marginBottom: "0.4rem" }}>“{result.partnerExample[0]}”</p>
+                      <p style={{ fontStyle: "italic" }}>“{result.partnerExample[1]}”</p>
+                    </div>
+                  )}
+                  {idx === 2 && result?.selfExample && (
+                    <div style={{ marginTop: "1rem" }}>
+                      <div style={{ fontSize: "0.8rem", marginBottom: "0.4rem", fontFamily: "Helvetica, sans-serif", color: "#444" }}>
+                        Если ты хочешь усилить блок «О себе» — можешь использовать что-то из этих фраз:
+                      </div>
+                      <p style={{ fontStyle: "italic", marginBottom: "0.4rem" }}>“{result.selfExample[0]}”</p>
+                      <p style={{ fontStyle: "italic" }}>“{result.selfExample[1]}”</p>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
+
           <div style={{ borderTop: "1px solid #ccc", paddingTop: "1.5rem", fontSize: "0.9rem", color: "#444" }}>
             <p style={{ lineHeight: "1.5" }}>
               Твои клятвы — какими бы они ни были — говори от сердца, и они будут самыми правильными.<br />
@@ -342,3 +331,4 @@ const section = {
     </div>
   );
 }
+
