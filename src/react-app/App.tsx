@@ -180,10 +180,6 @@ const chakraCTA: Record<string, string> = {
 
 const vowVerbs = ["хранить", "создавать", "защищать", "питать", "расти", "вдохновлять"];
 
-const vowTemplates: Record<string, [string, string]> = {
-  // предыдущие шаблоны, предполагается что они уже есть в коде
-};
-
 function generateStructuredVow(data: string[]): { text: string[]; example: [string, string] } {
   const [myFeel, myLang, partnerFeel, partnerLang] = data;
 
