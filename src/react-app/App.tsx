@@ -324,7 +324,13 @@ const questions = [
   },
   {
     text: "Как ты воспринимаешь любовь?",
-    options: langOptions
+    options: [
+      { id: "Слова поддержки", label: "Поддержка" },
+      { id: "Время вместе", label: "Время вместе" },
+      { id: "Подарки", label: "Подарки" },
+      { id: "Помощь", label: "Помощь" },
+      { id: "Прикосновения", label: "Прикосновения" }
+    ]
   },
   {
     text: "Как твоя половинка чувствует любовь?",
@@ -332,9 +338,16 @@ const questions = [
   },
   {
     text: "Как она воспринимает любовь?",
-    options: langOptions
+    options: [
+      { id: "Слова поддержки", label: "Поддержка" },
+      { id: "Время вместе", label: "Время вместе" },
+      { id: "Подарки", label: "Подарки" },
+      { id: "Помощь", label: "Помощь" },
+      { id: "Прикосновения", label: "Прикосновения" }
+    ]
   }
 ];
+
 
 export default function App() {
   const [step, setStep] = useState(-1);
