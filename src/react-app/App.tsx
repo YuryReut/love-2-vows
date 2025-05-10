@@ -158,17 +158,27 @@ const vowTemplates: Record<string, [string, string]> = {
 };
 
 
-const chakraQualities: Record<string, string> = {
-  "1": "весь мир",
+export const chakraQualitiesNoun: Record<string, string> = {
+  "1": "тишину",
   "2": "пламя",
-  "3": "энергию",
+  "3": "силу",
   "4": "любовь",
   "5": "глубину",
   "6": "свет",
   "7": "тишину"
 };
 
-const langChannels: Record<string, string> = {
+export const chakraQualitiesGen: Record<string, string> = {
+  "1": "тишины",
+  "2": "пламени",
+  "3": "силы",
+  "4": "любви",
+  "5": "глубины",
+  "6": "света",
+  "7": "тишины"
+};
+
+export const langChannels: Record<string, string> = {
   "Слова поддержки": "твои слова",
   "Время вместе": "твои поступки",
   "Подарки": "твои знаки",
@@ -176,7 +186,7 @@ const langChannels: Record<string, string> = {
   "Прикосновения": "твои прикосновения"
 };
 
-const chakraCTA: Record<string, string> = {
+export const chakraCTA: Record<string, string> = {
   "1": "Сохрани свою любовь — пусть она всегда будет твоей тихой гаванью.",
   "2": "Зафиксируй пламя этого чувства — и пусть оно вспыхивает вновь, где бы вы ни были.",
   "3": "Пусть ваша клятва станет символом силы, которую вы дарите друг другу.",
@@ -186,7 +196,7 @@ const chakraCTA: Record<string, string> = {
   "7": "Закрепи вашу тишину и слияние навсегда — как точку возвращения к любви."
 };
 
-const seeingVerb: Record<string, string> = {
+export const seeingVerb: Record<string, string> = {
   "1": "знаю",
   "2": "ощущаю всем телом",
   "3": "принимаю",
@@ -196,7 +206,7 @@ const seeingVerb: Record<string, string> = {
   "7": "улавливаю"
 };
 
-const soulVerb: Record<string, string> = {
+export const soulVerb: Record<string, string> = {
   "1": "покоится",
   "2": "вспыхивает",
   "3": "укрепляется",
@@ -206,7 +216,7 @@ const soulVerb: Record<string, string> = {
   "7": "затихает"
 };
 
-const buildVerb: Record<string, string> = {
+export const buildVerb: Record<string, string> = {
   "1": "сохранять",
   "2": "разжигать",
   "3": "укреплять",
@@ -216,7 +226,7 @@ const buildVerb: Record<string, string> = {
   "7": "собирать в тишине"
 };
 
-const spaceImage: Record<string, string> = {
+export const spaceImage: Record<string, string> = {
   "1": "остров спокойствия",
   "2": "вспышка чувств",
   "3": "надёжная опора",
@@ -226,7 +236,7 @@ const spaceImage: Record<string, string> = {
   "7": "молчаливое присутствие"
 };
 
-const growthVerb: Record<string, string> = {
+export const growthVerb: Record<string, string> = {
   "Слова поддержки": "прорастать",
   "Время вместе": "укрепляться",
   "Подарки": "накапливаться",
@@ -234,7 +244,7 @@ const growthVerb: Record<string, string> = {
   "Прикосновения": "оживать"
 };
 
-const imagePhrase: Record<string, string> = {
+export const imagePhrase: Record<string, string> = {
   "1": "домом, где спокойно",
   "2": "огнём, который зовёт",
   "3": "опорой, в которую верят",
@@ -244,16 +254,16 @@ const imagePhrase: Record<string, string> = {
   "7": "тишиной, где всё сливается в одно"
 };
 
-function generateStructuredVow(data: string[]): {
+export function generateStructuredVow(data: string[]): {
   text: [string, React.ReactNode][];
   selfExample?: [string, string];
   partnerExample?: [string, string];
 } {
   const [myFeel, myLang, partnerFeel, partnerLang] = data;
 
-  const q2 = chakraQualities[partnerFeel] || partnerFeel;
+  const q2 = chakraQualitiesNoun[partnerFeel] || partnerFeel;
   const c2 = langChannels[partnerLang] || partnerLang;
-  const q3 = chakraQualities[myFeel] || myFeel;
+  const q3 = chakraQualitiesGen[myFeel] || myFeel;
   const c3 = langChannels[myLang] || myLang;
 
   const see = seeingVerb[partnerFeel];
@@ -274,7 +284,7 @@ function generateStructuredVow(data: string[]): {
         как моё сердце становится <i>{imageDetail}</i>.
       </>],
       ["🫶 О себе", <>
-        Из своей <i>{q3}</i> я дарю тебе любовь через <i>{c3}</i>, потому что именно так <i>{soul}</i> моя душа рядом с тобой.
+        Из <i>{q3}</i> я дарю тебе любовь через <i>{c3}</i>, потому что именно так <i>{soul}</i> моя душа рядом с тобой.
       </>],
       ["🤝 Обещание", <>
         И я обещаю <i>{verb}</i> <i>{space}</i>, где наши чувства будут <i>{grow}</i> с каждым днём.
@@ -285,6 +295,7 @@ function generateStructuredVow(data: string[]): {
     partnerExample: vowTemplates[partnerKey]
   };
 }
+
 
 const welcomeText =
   "Этот сервис поможет тебе выразить свою любовь и быть понятной именно твоей половинкой. Это серия из 4 вопросов настройки и списка рекомендаций.";
