@@ -364,7 +364,7 @@ export default function App() {
         <div>
           <h2 style={{ fontWeight: "bold", fontSize: "1.2rem", marginBottom: "1rem" }}>{questions[step].text}</h2>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", justifyContent: "center" }}>
-            {questions[step].options.map(({ id, label }) => (
+            {questions[step].options.map((id) => (
               <button
                 key={id}
                 style={{ padding: "0.5rem 1.2rem", background: "#eee", color: "#000", borderRadius: "999px", border: "none", cursor: "pointer" }}
