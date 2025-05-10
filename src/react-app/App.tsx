@@ -315,7 +315,13 @@ const chakraOptions = [
   { id: "7", label: "Тишина и слияние" }
 ];
 
-const langOptions = Object.entries(langChannels).map(([id, label]) => ({ id, label }));
+const langOptions = [
+  { id: "Слова поддержки", label: "Поддержка" },
+  { id: "Время вместе", label: "Время вместе" },
+  { id: "Подарки", label: "Подарки" },
+  { id: "Помощь", label: "Помощь" },
+  { id: "Прикосновения", label: "Прикосновения" }
+];
 
 const questions = [
   {
@@ -324,13 +330,7 @@ const questions = [
   },
   {
     text: "Как ты воспринимаешь любовь?",
-    options: [
-      { id: "Слова поддержки", label: "Поддержка" },
-      { id: "Время вместе", label: "Время вместе" },
-      { id: "Подарки", label: "Подарки" },
-      { id: "Помощь", label: "Помощь" },
-      { id: "Прикосновения", label: "Прикосновения" }
-    ]
+    options: langOptions
   },
   {
     text: "Как твоя половинка чувствует любовь?",
@@ -338,13 +338,7 @@ const questions = [
   },
   {
     text: "Как она воспринимает любовь?",
-    options: [
-      { id: "Слова поддержки", label: "Поддержка" },
-      { id: "Время вместе", label: "Время вместе" },
-      { id: "Подарки", label: "Подарки" },
-      { id: "Помощь", label: "Помощь" },
-      { id: "Прикосновения", label: "Прикосновения" }
-    ]
+    options: langOptions
   }
 ];
 
