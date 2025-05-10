@@ -236,7 +236,6 @@ export const imagePhrase: Record<string, string> = {
   "7": "тишиной, где всё сливается в одно"
 };
 
-
 export function generateStructuredVow(data: string[]): {
   text: [string, React.ReactNode][];
   selfExample?: [string, string];
@@ -249,7 +248,6 @@ export function generateStructuredVow(data: string[]): {
   const q3 = chakraQualitiesGen[myFeel] || myFeel;
   const c3 = channelLabels[myLang] || myLang;
 
-  const see = seeingVerb[partnerFeel];
   const imageDetail = imagePhrase[partnerFeel];
   const soul = soulVerb[myFeel];
   const verb = buildVerb[myFeel];
@@ -266,8 +264,8 @@ export function generateStructuredVow(data: string[]): {
         Я знаю, что в тебе живёт <i>{q2}</i>, и именно <i>{c2}</i>.<br/>
         Я берегу это в себе, чтобы ты чувствовала себя рядом со мной — <i>{imageDetail}</i>.
       </>],
-      ["🫶 О себе", <>
-       Моя любовь рождается из <i>{q3}</i>.<br/>Когда <i>{c3}</i>, моя душа <i>{soul}</i>.
+      ["🤞 О себе", <>
+        Моя любовь рождается из <i>{q3}</i>.<br/>Когда <i>{c3}</i>, моя душа <i>{soul}</i>.
       </>],
       ["🤝 Обещание", <>
         И я обещаю <i>{verb}</i> <i>{space}</i>, где наши чувства будут <i>{grow}</i> с каждым днём.
@@ -278,6 +276,7 @@ export function generateStructuredVow(data: string[]): {
     partnerExample: vowTemplates[partnerKey]
   };
 }
+
 
 
 
