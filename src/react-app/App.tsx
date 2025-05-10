@@ -370,7 +370,7 @@ export default function App() {
                 style={{ padding: "0.5rem 1.2rem", background: "#eee", color: "#000", borderRadius: "999px", border: "none", cursor: "pointer" }}
                 onClick={() => handleOptionClick(id)}
               >
-                {label}
+                {id}
               </button>
             ))}
           </div>
