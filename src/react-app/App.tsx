@@ -249,12 +249,12 @@ export const languageGrowthVerb: Record<string, string> = {
   "Прикосновения": "мои прикосновения с теплом"
 };
 
-export const imageDetailOptions: string[] = [
-  "теплом, к которому хочется возвращаться",
-  "пространством, где можно быть собой",
-  "местом, где становится спокойно и тихо",
-  "прикосновением, в котором оживает сердце",
-  "светом, от которого раскрываются крылья"
+export const userLoveBetweenUs: string[] = [
+  "оставалось тепло слов поддержки",
+  "жило полное присутствие",
+  "ощущались твои знаки внимания",
+  "чувствовалась забота в действиях",
+  "сохранялась близость прикосновений"
 ];
 
 export function generateStructuredVow(data: string[]): {
@@ -269,7 +269,7 @@ export function generateStructuredVow(data: string[]): {
   const userQuality = userChakraOrigin[userChakra] || userChakra;
   const userChannel = userLovePhrase[userLang] || userLang;
 
-  const imageDetail = imageDetailOptions[Math.floor(Math.random() * imageDetailOptions.length)];
+  const betweenUs = userLoveBetweenUs[userLang];
   const soul = userSoulImage[userChakra];
   const build = chakraBuildVerb[userChakra];
   const partnerSenseFinal = chakraSpaceImage[partnerLang];
@@ -285,7 +285,7 @@ export function generateStructuredVow(data: string[]): {
         Я здесь, Я чувствую тебя: <br/>
         в тебе живёт <i>{partnerQuality}</i>.<br/>
         Когда ты <i>{partnerChannel}</i>, я слышу в этом настоящую любовь.<br/>
-        Я берегу это в себе — чтобы ты чувствовал(а) рядом со мной <i>{imageDetail}</i>.
+        Я берегу это в себе — чтобы между нами <i>{betweenUs}</i>.
       </>],
       ["🫶 О себе", <>
         Моя любовь рождается из <i>{userQuality}</i>.<br/>Когда <i>{userChannel}</i>, моя душа <i>{soul}</i>.
