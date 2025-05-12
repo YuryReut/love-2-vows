@@ -296,7 +296,7 @@ export function generateStructuredVow(data: string[]): {
         Между нами <i>{build}</i>,<br/>
         где есть твоя <i>{space}</i> и моя <i>{growth}</i>.
         </>],
-      ["❤️ Финал", <>Я люблю тебя — сегодня, завтра и всегда.</>]
+      ["❤️ Финал", <>Я люблю тебя.</>]
     ],
     selfExample: vowTemplates[userKey],
     partnerExample: vowTemplates[partnerKey]
