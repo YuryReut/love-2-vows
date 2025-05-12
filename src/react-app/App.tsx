@@ -435,7 +435,7 @@ export default function App() {
           <div style={{ borderTop: "1px solid #ccc", paddingTop: "1.5rem", fontSize: "0.9rem", color: "#444" }}>
             <p style={{ lineHeight: "1.5" }}>
               Твои клятвы — какими бы они ни были — говори от сердца, и они будут самыми правильными.<br />
-              Мы создали сервис <a href="https://web3wed.io" target="_blank" style={{ color: "#000", textDecoration: "underline" }}>web3wed.io</a>, чтобы вы могли сохранить их навсегда. <b>{chakraCallToAction}</b>
+              Мы создали сервис <a href="https://web3wed.io" target="_blank" style={{ color: "#000", textDecoration: "underline" }}>web3wed.io</a>, чтобы вы могли сохранить их навсегда. {chakraCallToAction[answers[0]] || "Сохрани эту вибрацию на блокчейне любви."}
             </p>
           </div>
         </div>
