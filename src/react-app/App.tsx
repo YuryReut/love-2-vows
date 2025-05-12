@@ -272,8 +272,8 @@ export function generateStructuredVow(data: string[]): {
   const imageDetail = imageDetailOptions[Math.floor(Math.random() * imageDetailOptions.length)];
   const soul = userSoulImage[userChakra];
   const build = chakraBuildVerb[userChakra];
-  const space = chakraSpaceImage[userChakra];
-  const growth = languageGrowthVerb[userLang];
+  const partnerSenseFinal = chakraSpaceImage[partnerLang];
+  const mySenseFinal = languageGrowthVerb[userLang];
 
   const userKey = `${userChakra}|${userLang}`;
   const partnerKey = `${partnerChakra}|${partnerLang}`;
@@ -292,7 +292,7 @@ export function generateStructuredVow(data: string[]): {
       </>],
       ["🤝 Обещание", <>
         Между нами <i>{build}</i>,<br/>
-        где есть твоя <i>{space}</i> и моя <i>{growth}</i>.
+        где есть <i>{partnerSenseFinal}</i> и <i>{mySenseFinal}</i>.
         </>],
       ["❤️ Финал", <>Я люблю тебя.</>]
     ],
