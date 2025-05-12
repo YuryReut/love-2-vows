@@ -266,17 +266,17 @@ export function generateStructuredVow(data: string[]): {
 } {
   const [userChakra, userLang, partnerChakra, partnerLang] = data;
 
-  const partnerQualityNoun = chakraQualityNoun[partnerChakra] || partnerChakra;
-  const partnerChannel = loveLanguageChannelText[partnerLang] || partnerLang;
-  const userQualityGen = chakraQualityGen[userChakra] || userChakra;
-  const userChannel = loveLanguageChannelText[userLang] || userLang;
+  const partnerQuality = chakraFeelingPhrase[partnerChakra] || partnerChakra;
+  const partnerChannel = partnerLovePhrase[partnerLang] || partnerLang;
+  const userQuality = userChakraOrigin[userChakra] || userChakra;
+  const userChannel = userLovePhrase[userLang] || userLang;
 
   const partnerSeeing = chakraSeeingVerb[partnerChakra];
-  const partnerImage = chakraImagePhrase[partnerChakra];
-  const userSoul = chakraSoulVerb[userChakra];
-  const userBuild = chakraBuildVerb[userChakra];
-  const userSpace = chakraSpaceImage[userChakra];
-  const userGrowth = languageGrowthVerb[userLang];
+  const imageDetail = imageDetailOptions[Math.floor(Math.random() * imageDetailOptions.length)];
+  const soul = userSoulImage[userChakra];
+  const build = chakraBuildVerb[userChakra];
+  const space = chakraSpaceImage[userChakra];
+  const growth = languageGrowthVerb[userLang];
 
   const userKey = `${userChakra}|${userLang}`;
   const partnerKey = `${partnerChakra}|${partnerLang}`;
@@ -286,15 +286,15 @@ export function generateStructuredVow(data: string[]): {
       ["📍 Открытие", <>В этот момент, когда мир замер вокруг нас, я хочу сказать…</>],
       ["💬 О партнёре", <>
         Я здесь, Я чувствую тебя: <br/>
-        в тебе живёт <i>{partnerQualityNoun}</i>.<br/>
+        в тебе живёт <i>{partnerQuality}</i>.<br/>
         Когда ты <i>{partnerChannel}</i>, я слышу в этом настоящую любовь.<br/>
-        Я берегу это в себе — чтобы ты чувствовал(а) рядом со мной <i>{partnerImage}</i>.
+        Я берегу это в себе — чтобы ты чувствовал(а) рядом со мной <i>{imageDetail}</i>.
       </>],
       ["🫶 О себе", <>
-        Моя любовь рождается из <i>{userQualityGen}</i>.<br/>Когда <i>{userChannel}</i>, моя душа <i>{userSoul}</i>.
+        Моя любовь рождается из <i>{userQuality}</i>.<br/>Когда <i>{userChannel}</i>, моя душа <i>{soul}</i>.
       </>],
       ["🤝 Обещание", <>
-        И я обещаю <i>{userBuild}</i> <i>{userSpace}</i>, где наши чувства будут <i>{userGrowth}</i> с каждым днём.
+        И я обещаю <i>{build}</i> <i>{space}</i>, где наши чувства будут <i>{growth}</i> с каждым днём.
       </>],
       ["❤️ Финал", <>Я люблю тебя — сегодня, завтра и всегда.</>]
     ],
@@ -302,6 +302,7 @@ export function generateStructuredVow(data: string[]): {
     partnerExample: vowTemplates[partnerKey]
   };
 }
+
 
 const welcomeText =
   "Этот сервис поможет тебе выразить свою любовь и быть понятной именно твоей половинкой. Это серия из 4 вопросов настройки и списка рекомендаций.";
