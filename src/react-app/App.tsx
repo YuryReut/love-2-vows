@@ -361,7 +361,6 @@ export default function App() {
   };
 
   const result = answers.length === 4 ? generateStructuredVow(answers) : null;
-  const chakraCtaLine = chakraCallToAction[answers[0]] || "Сохрани эту вибрацию на блокчейне любви.";
 
   return (
     <div style={{ fontFamily: "'EB Garamond', serif", backgroundColor: "white", color: "#222", padding: "2rem", maxWidth: "640px", margin: "0 auto", textAlign: "center" as const }}>
