@@ -233,12 +233,17 @@ export default function App() {
         <div style={{ marginTop: "1.5rem" }}>
           <h2 style={{ fontWeight: "bold", fontSize: "1.4rem", marginBottom: "1.5rem" }}>Твоя клятва любви</h2>
           {result?.text.map(([label, jsx], idx) => (
-                <p>{jsx}</p>
-           ))}
+            <div>
+              <p>
+                {idx}
+                {label}
+                {jsx}
+              </p>
+            </div>
+          ))}
 
-          <div>
-            <hr/>
-            <p>
+          <div style={{ borderTop: "1px solid #ccc", paddingTop: "1.5rem", fontSize: "0.9rem", color: "#444" }}>
+            <p style={{ lineHeight: "1.5" }}>
               Как сказать все и не забыть?<br />
               
               Важно не придумать, а вспомнить. Оно уже есть внутри. <br />
