@@ -232,7 +232,7 @@ export default function App() {
       ) : (
         <div style={{ marginTop: "1.5rem" }}>
           <h2 style={{ fontWeight: "bold", fontSize: "1.4rem", marginBottom: "1.5rem" }}>Твоя клятва любви</h2>
-          {result?.text.map(([label, jsx], idx) => (
+          {result?.text.map(([label, jsx]) => (
             <div>
               <p style={{ paddingTop: "1.5rem", fontSize: "0.9rem", color: "#444" }}>
                 {label}
