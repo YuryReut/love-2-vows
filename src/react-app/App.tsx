@@ -237,7 +237,7 @@ export default function App() {
               <p style={{ paddingTop: "1.5rem", fontSize: "0.9rem", color: "#444" }}>
                 {label}
               </p>
-              <p>
+              <p style={{ fontSize: "1.5rem" }}>
                 {jsx}
               </p>
             </div>
