@@ -187,7 +187,7 @@ export const userChakraOrigin: Record<string, string> = {
   "7": "тишины, присутствия и того, что не нужно объяснять"
 };
 
-export const partnerLovePhrase: Record<string, string> = {
+export const partnerChannelChoice: Record<string, string> = {
   "Слова поддержки": "говоришь сердцем — словами, в которых звучит поддержка",
   "Время вместе": "остаёшься рядом — полностью, не отвлекаясь ни на что",
   "Подарки": "даришь знаки внимания — пусть даже совсем маленькие",
@@ -233,7 +233,7 @@ export const chakraBuildVerb: Record<string, string> = {
   "7": "тёплое пространство без слов"
 };
 
-export const chakraSpaceImage: Record<string, string> = {
+export const partnerSenseFinalChoice: Record<string, string> = {
   "Слова поддержки": "нежность слов",
   "Время вместе": "твоё полное присутствие",
   "Подарки": "твои знаки внимания",
@@ -241,7 +241,7 @@ export const chakraSpaceImage: Record<string, string> = {
   "Прикосновения": "твои прикосновения, полные смысла"
 };
 
-export const languageGrowthVerb: Record<string, string> = {
+export const mySenseFinalChoice: Record<string, string> = {
   "Слова поддержки": "мой голос сердца",
   "Время вместе": "моё тихое присутствие",
   "Подарки": "мои дары от души",
@@ -265,15 +265,15 @@ export function generateStructuredVow(data: string[]): {
   const [userChakra, userLang, partnerChakra, partnerLang] = data;
 
   const partnerQuality = chakraFeelingPhrase[partnerChakra] || partnerChakra;
-  const partnerChannel = partnerLovePhrase[partnerLang] || partnerLang;
+  const partnerChannel = partnerChannelChoice[partnerLang] || partnerLang;
   const userQuality = userChakraOrigin[userChakra] || userChakra;
   const userChannel = userLovePhrase[userLang] || userLang;
 
   const betweenUs = userLoveBetweenUs[userLang];
   const soul = userSoulImage[userChakra];
   const build = chakraBuildVerb[userChakra];
-  const partnerSenseFinal = chakraSpaceImage[partnerLang];
-  const mySenseFinal = languageGrowthVerb[userLang];
+  const partnerSenseFinal = partnerSenseFinalChoice[partnerLang];
+  const mySenseFinal = mySenseFinalChoice[userLang];
 
   const userKey = `${userChakra}|${userLang}`;
   const partnerKey = `${partnerChakra}|${partnerLang}`;
