@@ -233,18 +233,12 @@ export default function App() {
         <div style={{ marginTop: "1.5rem" }}>
           <h2 style={{ fontWeight: "bold", fontSize: "1.4rem", marginBottom: "1.5rem" }}>Твоя клятва любви</h2>
           {result?.text.map(([label, jsx], idx) => (
-            <div key={idx} style={{ display: "flex", gap: "2rem", alignItems: "flex-start", marginBottom: "2.5rem" }}>
-              <div style={{ flex: 1, fontFamily: "Helvetica, sans-serif", fontSize: "0.75rem", color: "#888", lineHeight: 1.4 }}>
-                <div style={{ marginBottom: "0.5rem" }}>{label}</div>
-              </div>
-              <div style={{ flex: 3 }}>
-                <p style={{ fontSize: "1.6rem", lineHeight: "1.6", fontWeight: 400 }}>{jsx}</p>
-              </div>
-            </div>
-          ))}
+                <p>{jsx}</p>
+           ))}
 
-          <div style={{ borderTop: "1px solid #ccc", paddingTop: "1.5rem", fontSize: "0.9rem", color: "#444" }}>
-            <p style={{ lineHeight: "1.5" }}>
+          <div>
+            <hr/>
+            <p>
               Как сказать все и не забыть?<br />
               
               Важно не придумать, а вспомнить. Оно уже есть внутри. <br />
