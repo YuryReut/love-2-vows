@@ -234,11 +234,11 @@ export const chakraBuildVerb: Record<string, string> = {
 };
 
 export const partnerSenseFinalChoice: Record<string, string> = {
-  "Слова поддержки": "нежность слов",
+  "Слова поддержки": "твои важные слова",
   "Время вместе": "твоё полное присутствие",
   "Подарки": "твои знаки внимания",
-  "Помощь": "твоя забота без слов",
-  "Прикосновения": "твои прикосновения, полные смысла"
+  "Помощь": "твоя забота",
+  "Прикосновения": "твои прикосновения"
 };
 
 export const mySenseFinalChoice: Record<string, string> = {
