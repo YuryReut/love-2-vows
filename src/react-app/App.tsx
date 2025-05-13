@@ -290,6 +290,9 @@ export function generateStructuredVow(data: string[]): {
         в тебе живёт <i>{partnerQuality}</i>.<br/>
         Когда ты <i>{partnerChannel}</i>,<br/> 
         я <i>{userAcceptLove}</i> настоящую любовь<br/>
+        <br/>
+        <i>(пауза, взгляд глаза в глаза)</i>
+        <br/>
         и берегу это <i>{build}</i>,<br/>
         где есть <i>{partnerSenseFinal}</i><br/> 
         и <i>{mySenseFinal}</i>.
