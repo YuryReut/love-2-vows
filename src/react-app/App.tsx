@@ -122,9 +122,6 @@ export function generateStructuredVow(data: string[]): {
   const partnerSenseFinal = partnerSenseFinalChoice[partnerLang];
   const mySenseFinal = mySenseFinalChoice[userLang];
 
-  const userKey = `${userChakra}|${userLang}`;
-  const partnerKey = `${partnerChakra}|${partnerLang}`;
-
   return {
     text: [
       ["Говори только одному человеку", <>
