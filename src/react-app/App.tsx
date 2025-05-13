@@ -261,14 +261,6 @@ export const mySenseFinalChoice: Record<string, string> = {
   "Прикосновения": "мои прикосновения с теплом"
 };
 
-export const userLoveBetweenUs: Record<string, string> = {
-  "Слова поддержки": "оставалось тепло слов поддержки",
-  "Время вместе": "жило полное присутствие",
-  "Подарки": "ощущались твои знаки внимания",
-  "Помощь": "чувствовалась забота в действиях",
-  "Прикосновения": "сохранялась близость прикосновений"
-};
-
 export function generateStructuredVow(data: string[]): {
   text: [string, React.ReactNode][];
   selfExample?: [string, string];
@@ -282,7 +274,6 @@ export function generateStructuredVow(data: string[]): {
   const userQuality = userChakraOrigin[userChakra] || userChakra;
   const userChannel = userLovePhrase[userLang] || userLang;
   
-  const betweenUs = userLoveBetweenUs[userLang];
   const soul = userSoulImage[userChakra];
   const build = chakraBuildVerb[userChakra];
   const partnerSenseFinal = partnerSenseFinalChoice[partnerLang];
@@ -295,23 +286,19 @@ export function generateStructuredVow(data: string[]): {
     text: [
       ["📍 Открытие", <>В этот момент, когда мир замер вокруг нас, я хочу сказать…</>],
       ["💬 О партнёре", <>
-        Я здесь, Я чувствую тебя: <br/>
+        Я здесь, я чувствую тебя: <br/>
         в тебе живёт <i>{partnerQuality}</i>.<br/>
         Когда ты <i>{partnerChannel}</i>,<br/> 
-        я {userAcceptLove} настоящую любовь.<br/>
-        Я берегу это в себе — чтобы между нами<br/>
-        <i>{betweenUs}</i>.
+        я <i>{userAcceptLove}</i> настоящую любовь<br/>
+        и берегу это <i>{build}</i>,<br/>
+        где есть <i>{partnerSenseFinal}</i><br/> 
+        и <i>{mySenseFinal}</i>.
       </>],
       ["🫶 О себе", <>
         Моя любовь рождается из <i>{userQuality}</i>.<br/>
         Когда <i>{userChannel}</i>, <br/>
-        моя душа <i>{soul}</i>.
+        В этот момент моя душа <i>{soul}</i>.
       </>],
-      ["🤝 Обещание", <>
-        Между нами <i>{build}</i>,<br/>
-        где есть <i>{partnerSenseFinal}</i><br/> 
-        и <i>{mySenseFinal}</i>.
-        </>],
       ["❤️ Финал", <>Я люблю тебя.</>]
     ],
     selfExample: vowTemplates[userKey],
