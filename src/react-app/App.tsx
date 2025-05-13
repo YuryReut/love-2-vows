@@ -270,10 +270,10 @@ export function generateStructuredVow(data: string[]): {
 
   const partnerQuality = chakraFeelingPhrase[partnerChakra] || partnerChakra;
   const partnerChannel = partnerChannelChoice[partnerLang] || partnerLang;
-  const userAcceptLove = userAcceptLoveChoice [userChakra] || userChakra;
+  const userAcceptLove = userAcceptLoveChoice[userChakra] || userChakra;
   const userQuality = userChakraOrigin[userChakra] || userChakra;
   const userChannel = userLovePhrase[userLang] || userLang;
-  
+
   const soul = userSoulImage[userChakra];
   const build = chakraBuildVerb[userChakra];
   const partnerSenseFinal = partnerSenseFinalChoice[partnerLang];
@@ -285,21 +285,20 @@ export function generateStructuredVow(data: string[]): {
   return {
     text: [
       ["📍 Открытие", <>
-         В этот момент, когда мир замер вокруг нас, я хочу сказать…<br/>
-         Я здесь, я чувствую тебя: <br/>
-         в тебе живёт <i>{partnerQuality}</i>.
-        </>],
-      ["💬 Вспомни один короткий момент, когда ты почувствовала: вот он — любит меня. Это может быть жест, взгляд, поступок, утро, поездка. Лучше всего — не банальный, а тихий. Я помню, как ты… Это было, когда… Когда мы просто… Я чувствовала это, когда…", <>
-        Когда ты <i>{partnerChannel}</i>,<br/> 
-        я <i>{userAcceptLove}</i> настоящую любовь<br/>
-        <br/>
-        и берегу это <i>{build}</i>,<br/>
-        где есть <i>{partnerSenseFinal}</i><br/> 
+        В этот момент, когда мир замер вокруг нас, я хочу сказать…<br />
+        Я здесь, я чувствую тебя: <br />
+        в тебе живёт <i>{partnerQuality}</i>.
+      </>],
+      ["💬", <>
+        Когда ты <i>{partnerChannel}</i>,<br />
+        я <i>{userAcceptLove}</i> настоящую любовь<br /><br />
+        и берегу это <i>{build}</i>,<br />
+        где есть <i>{partnerSenseFinal}</i><br />
         и <i>{mySenseFinal}</i>.
       </>],
-      ["🫶 пауза, взгляд глаза в глаза", <>
-        Моя любовь рождается из <i>{userQuality}</i>.<br/>
-        Когда <i>{userChannel}</i>, <br/>
+      ["🫶", <>
+        Моя любовь рождается из <i>{userQuality}</i>.<br />
+        Когда <i>{userChannel}</i>,<br />
         В этот момент моя душа <i>{soul}</i>.
       </>],
       ["❤️ Финал", <>Я люблю тебя.</>]
@@ -308,7 +307,6 @@ export function generateStructuredVow(data: string[]): {
     partnerExample: vowTemplates[partnerKey]
   };
 }
-
 
 const welcomeText =
   "Этот сервис поможет тебе выразить свою любовь и быть понятной именно твоей половинкой. Это серия из 4 вопросов настройки и списка рекомендаций.";
@@ -326,7 +324,7 @@ const chakraOptions = [
   { id: "5", label: "Когда мы разделяем смыслы, говорим на одном языке и видим общее будущее" },
   { id: "6", label: "Когда ты вдохновляешь меня, чувствуешь без слов и веришь в моё видение" },
   { id: "7", label: "Когда между нами тишина, слияние и глубокое присутствие без слов" }
-]
+];
 
 const langOptions = [
   { id: "Слова поддержки", label: "Через слова и поддержку" },
@@ -354,7 +352,6 @@ const questions = [
     options: langOptions
   }
 ];
-
 
 export default function App() {
   const [step, setStep] = useState(-1);
@@ -397,46 +394,38 @@ export default function App() {
       ) : (
         <div style={{ marginTop: "1.5rem" }}>
           <h2 style={{ fontWeight: "bold", fontSize: "1.4rem", marginBottom: "1.5rem" }}>Твоя клятва любви</h2>
-          {result?.text.map(([label, jsx], idx) => {
-            const showHint = idx === 1 || idx === 2;
-            const hintLeft = idx === 1 ? "сказать личное и важное о его" : "сказать от сердца о себе";
-            const hintRight = idx === 1 ? "привести пример про" : "показать свой способ любви";
-
-            return (
-              <div key={idx} style={{ display: "flex", gap: "2rem", alignItems: "flex-start", marginBottom: "2.5rem" }}>
-                <div style={{ flex: 1, fontFamily: "Helvetica, sans-serif", fontSize: "0.75rem", color: "#888", lineHeight: 1.4 }}>
-                  <div style={{ marginBottom: "0.5rem" }}>{label}</div>
-                  {showHint && (
-                    <>
-                      <div style={{ marginBottom: "0.3rem" }}>{hintLeft}</div>
-                      <div>{hintRight}</div>
-                    </>
-                  )}
-                </div>
-                <div style={{ flex: 3 }}>
-                  <p style={{ fontSize: "1.6rem", lineHeight: "1.6", fontWeight: 400 }}>{jsx}</p>
-                  {idx === 1 && result?.partnerExample && (
-                    <div style={{ marginTop: "1rem" }}>
-                      <div style={{ fontSize: "0.8rem", marginBottom: "0.4rem", fontFamily: "Helvetica, sans-serif", color: "#444" }}>
-                        Если ты хочешь усилить блок «О нём» — можешь использовать что-то из этих фраз:
-                      </div>
-                      <p style={{ fontStyle: "italic", marginBottom: "0.4rem" }}>“{result.partnerExample[0]}”</p>
-                      <p style={{ fontStyle: "italic" }}>“{result.partnerExample[1]}”</p>
-                    </div>
-                  )}
-                  {idx === 2 && result?.selfExample && (
-                    <div style={{ marginTop: "1rem" }}>
-                      <div style={{ fontSize: "0.8rem", marginBottom: "0.4rem", fontFamily: "Helvetica, sans-serif", color: "#444" }}>
-                        Если ты хочешь усилить блок «О себе» — можешь использовать что-то из этих фраз:
-                      </div>
-                      <p style={{ fontStyle: "italic", marginBottom: "0.4rem" }}>“{result.selfExample[0]}”</p>
-                      <p style={{ fontStyle: "italic" }}>“{result.selfExample[1]}”</p>
-                    </div>
-                  )}
-                </div>
+          {result?.text.map(([label, jsx], idx) => (
+            <div key={idx} style={{ display: "flex", gap: "2rem", alignItems: "flex-start", marginBottom: "2.5rem" }}>
+              <div style={{ flex: 1, fontFamily: "Helvetica, sans-serif", fontSize: "0.75rem", color: "#888", lineHeight: 1.4 }}>
+                <div style={{ marginBottom: "0.5rem" }}>{label}</div>
               </div>
-            );
-          })}
+              <div style={{ flex: 3 }}>
+                <p style={{ fontSize: "1.6rem", lineHeight: "1.6", fontWeight: 400 }}>{jsx}</p>
+                {idx === 3 && (
+                  <>
+                    {result?.partnerExample && (
+                      <div style={{ marginTop: "2rem" }}>
+                        <div style={{ fontSize: "0.8rem", marginBottom: "0.4rem", fontFamily: "Helvetica, sans-serif", color: "#444" }}>
+                          Если ты хочешь усилить блок «О нём» — можешь использовать что-то из этих фраз:
+                        </div>
+                        <p style={{ fontStyle: "italic", marginBottom: "0.4rem" }}>“{result.partnerExample[0]}”</p>
+                        <p style={{ fontStyle: "italic" }}>“{result.partnerExample[1]}”</p>
+                      </div>
+                    )}
+                    {result?.selfExample && (
+                      <div style={{ marginTop: "2rem" }}>
+                        <div style={{ fontSize: "0.8rem", marginBottom: "0.4rem", fontFamily: "Helvetica, sans-serif", color: "#444" }}>
+                          Если ты хочешь усилить блок «О себе» — можешь использовать что-то из этих фраз:
+                        </div>
+                        <p style={{ fontStyle: "italic", marginBottom: "0.4rem" }}>“{result.selfExample[0]}”</p>
+                        <p style={{ fontStyle: "italic" }}>“{result.selfExample[1]}”</p>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            </div>
+          ))}
 
           <div style={{ borderTop: "1px solid #ccc", paddingTop: "1.5rem", fontSize: "0.9rem", color: "#444" }}>
             <p style={{ lineHeight: "1.5" }}>
