@@ -195,6 +195,18 @@ export const partnerChannelChoice: Record<string, string> = {
   "Прикосновения": "касаешься — и в каждом прикосновении я ощущаю тепло"
 };
 
+
+export const userAcceptLoveChoice: Record<string, string> = {
+  "1": "узнаю в этом",
+  "2": "ощущаю это как",
+  "3": "принимаю это как",
+  "4": "чувствую это как",
+  "5": "слышу в этом",
+  "6": "вижу в этом",
+  "7": "улавливаю это как"
+};
+
+
 export const userLovePhrase: Record<string, string> = {
   "Слова поддержки": "мои слова касаются тебя с нежностью",
   "Время вместе": "я рядом с тобой, полностью и без спешки",
@@ -266,9 +278,10 @@ export function generateStructuredVow(data: string[]): {
 
   const partnerQuality = chakraFeelingPhrase[partnerChakra] || partnerChakra;
   const partnerChannel = partnerChannelChoice[partnerLang] || partnerLang;
+  const userAcceptLove = userAcceptLoveChoice [userChakra] || userChakra;
   const userQuality = userChakraOrigin[userChakra] || userChakra;
   const userChannel = userLovePhrase[userLang] || userLang;
-
+  
   const betweenUs = userLoveBetweenUs[userLang];
   const soul = userSoulImage[userChakra];
   const build = chakraBuildVerb[userChakra];
@@ -284,15 +297,20 @@ export function generateStructuredVow(data: string[]): {
       ["💬 О партнёре", <>
         Я здесь, Я чувствую тебя: <br/>
         в тебе живёт <i>{partnerQuality}</i>.<br/>
-        Когда ты <i>{partnerChannel}</i>, я слышу в этом настоящую любовь.<br/>
-        Я берегу это в себе — чтобы между нами <i>{betweenUs}</i>.
+        Когда ты <i>{partnerChannel}</i>,<br/> 
+        я {userAcceptLove} настоящую любовь.<br/>
+        Я берегу это в себе — чтобы между нами<br/>
+        <i>{betweenUs}</i>.
       </>],
       ["🫶 О себе", <>
-        Моя любовь рождается из <i>{userQuality}</i>.<br/>Когда <i>{userChannel}</i>, моя душа <i>{soul}</i>.
+        Моя любовь рождается из <i>{userQuality}</i>.<br/>
+        Когда <i>{userChannel}</i>, <br/>
+        моя душа <i>{soul}</i>.
       </>],
       ["🤝 Обещание", <>
         Между нами <i>{build}</i>,<br/>
-        где есть <i>{partnerSenseFinal}</i> и <i>{mySenseFinal}</i>.
+        где есть <i>{partnerSenseFinal}</i><br/> 
+        и <i>{mySenseFinal}</i>.
         </>],
       ["❤️ Финал", <>Я люблю тебя.</>]
     ],
